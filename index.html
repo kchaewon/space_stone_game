@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <title>SPACE STONE</title>
+        <!-- JS -->
+        <script src='scripts/jquery.min.js'></script>
+        <script src='scripts/page.js'></script>
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="style/index.css">
+        <link rel="icon" href="source/rocket/rocket.gif">
+        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class='outer-container'>
+            <div class='game-window'>
+                <!-- Main Menu -->
+                <div class="clear-div" id="landing-page">
+                    <div id="landing-header">
+                        <img src="./source/stone.png">
+                        <img src="./source/stone.png">
+                        <span class="centerText"> SPACE STONE </span>
+                        <img src="./source/stone.png">
+                        <img src="./source/stone.png">
+                    </div>
+                    <div>
+                        <button id="playGameButton" onclick="showTutorial()"><strong>PLAY</strong></button>
+                    </div>
+                    <div>
+                        <button id="settingsButton" onclick="showSettings()"><strong>SETTINGS</strong></button>
+                    </div>
+                </div>
+                <!-- Settings -->
+                <div class="clear-div page" id="settings-page" style="display: none;">
+                    <h1>Settings</h1>
+                    <div class="volume-container">
+                        <h2>Volume: <span id="volumeValue" style="color:#fec132">50</span></h2>
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    </div>
+                    <script>
+                        var slider = document.getElementById("myRange");
+                        var output = document.getElementById("volumeValue");
+                        output.innerHTML = slider.value;
+                        slider.oninput = function() {
+                            output.innerHTML = this.value;
+                        }
+                    </script>
+                    <div id="difficulty-container">
+                        <h2>Difficulty</h2>
+                        <button class="difficulty-button" onclick="selectDifficulty(this)">Easy</button>
+                        <button class="difficulty-button selected" onclick="selectDifficulty(this)">Normal</button>
+                        <button class="difficulty-button" onclick="selectDifficulty(this)">Hard</button>
+                    </div>
+                    <div>
+                        <button class="close-button" id="closeButton" onclick="showMainMenu()"><strong>Close</strong></button>
+                    </div>
+                </div>
+                <!-- Tutorial -->
+                <div class="clear-div tutorial-container" id="tutorial-page" style="display: none;">
+                    <h1 style="color:#4c4c84">How to play</h1>
+                    <p>Dodge <strong>space stones</strong></p>
+                    <div class="gif-container">
+                        <img src="./source/stone.png">
+                    </div>
+                    <p>Collect <strong>shields</strong> & travel through <strong>portals</strong> to the next level!</p>
+                    <div class="gif-container">
+                        <img src="./source/shield.gif">
+                        <img src="./source/portal.gif">
+                    </div>
+                    <p>Gain as many <strong>points</strong> as possible!</p>
+                    <div>
+                        <button id="startButton" onclick="startGame()">Start</button>
+                    </div>
+                </div>
+                <!-- Actual Game -->
+                <div id="actual-game">
+                    <img id="player" class="pl" src="source/rocket/rocket.gif" alt="rocket">
+                    <audio id="gameover" src="source/audio/game-over.mp3" ></audio>
+                    <audio id="pickup" src="source/audio/pick-up.mp3" ></audio>
+                    <!-- Get Ready -->
+                    <div id="get-ready">
+                        <h1 style="color:#4c4c84"><strong>Get Ready!</strong></h1>
+                        <img src="source/arrow-keys.png">
+                        <h2>Use <span style="color:#fd8b8a">arrow keys </span> to move.</h2>
+                    </div>
+                    <!-- Asteroids -->
+                    <div class="asteroidSection"> </div>
+                    <!-- Score Panel -->
+                    <div id="score-panel">
+                        <div id="score">SCORE
+                            <div id="score-num">0</div>
+                        </div>
+                        <div id="danger">DANGER
+                            <div id="danger-num">20</div>
+                        </div>
+                        <div id="level">LEVEL
+                            <div id="level-num">0</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gameover -->
+                <div class="clear-div" id="game-over-panel" style="display: none;">
+                    <h1 style="color:#fd8b8a"><strong>GAME OVER!</strong></h1>
+                    <p>YOU HAVE TO FIX YOUR SPACESHIP!</p>
+                    <h2>You scored: <span id="finalScore" style="color:#fec132">FINAL SCORE</span></h2>
+                    <button id="startOver" onclick="gameRestart()"><strong>Restart</strong></button>
+                </div>
+            </div> <!-- end game-window -->
+        </div> <!-- end outer-container -->
+    </body>
+</html>
